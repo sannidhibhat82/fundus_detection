@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Upload Trained Model{% endblock %}
+
+{% block content %}
+<div class="upload-container">
+    <h1>Upload Trained Model</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="model">Select Model File:</label>
+            <input type="file" class="form-control-file" name="model" required>
+        </div>
+        <button type="submit" class="btn btn-danger btn-block">Upload Model</button>
+    </form>
+</div>
+{% endblock %}

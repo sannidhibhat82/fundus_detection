@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{%load static %}
+{% block title %}Fundus Disease Detection{% endblock %}
+
+{% block content %}
+<div id="upload" class="section">
+    <h2 class="section-header">Introduction</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="upload-container" id="uploadContainer">
+                <i class="fas fa-upload upload-icon"></i>
+                <p class="upload-text">Drag and drop your image here or click to select</p>
+                <form id="uploadForm" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="file" accept="image/*" id="imageUpload" name="image" required>
+                    <button type="submit" class="btn btn-danger btn-block" id="submitBtn" disabled>Submit for Prediction</button>
+                </form>
+                <div id="imagePreview" class="row" style="display: none;">
+                    <h4 class="col-12">Selected Image:</h4>
+                    <div class="col-12 d-flex align-items-start">
+                        <img id="previewImage" src="" alt="Selected Image" class="selected-image">
+                        <div class="image-info d-flex align-items-center w-100"> <!-- Add margin start -->
+                            <p id="imageName" class="mb-0 me-2"></p> <!-- Add margin end -->
+                            <i class="fas fa-times remove-icon" id="removeImage" title="Remove Image"></i>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="col-md-6">
+            <p>This project focuses on the automated detection of fundus diseases using deep learning techniques. With the increasing prevalence of eye-related diseases such as diabetic retinopathy, glaucoma, and cataract, early and accurate diagnosis is crucial for effective treatment. Our solution leverages advanced image processing and machine learning algorithms to analyze retinal images and provide reliable predictions.</p>
+            <p>The system aims to assist healthcare professionals by reducing the time and effort required for manual evaluation while increasing diagnostic accuracy and consistency.</p>
+        </div>
+    </div>
+</div>
+<div id="problem" class="section">
+    <h2 class="section-header">Problem Statement</h2>
+    <div class="problem-content">
+        <div class="problem-text">
+            <ul class="objectives-list mt-4">
+                <li><i class="fas fa-clock"></i> <strong>Time-Consuming Process</strong>: Manual assessment by
+                    ophthalmologists takes considerable time.</li>
+                <li><i class="fas fa-exclamation-circle"></i> <strong>High Error Rate</strong>: Human
+                    evaluations are prone to errors, leading to misdiagnoses.</li>
+                <li><i class="fas fa-chart-bar"></i> <strong>Inconsistent Results</strong>: Variability in
+                    assessments can lead to inconsistent diagnostic outcomes.</li>
+                <li><i class="fas fa-users"></i> <strong>Accessibility Issues</strong>: Limited availability of
+                    specialists makes timely diagnosis difficult in many regions.</li>
+            </ul>
+        </div>
+        <div class="problem-image">
+            <img src="{% static 'images/ps.png' %}" width="350" alt="Problem Statement" class="image-right">
+        </div>
+    </div>
+</div>
+
+<div id="objectives" class="section">
+    <h2 class="section-header">Objectives</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{% static 'images/disease.png' %}" width="350" alt="Objectives" class="image-right">
+        </div>
+        <div class="col-md-6">
+            <ul class="objectives-list">
+                <li><i class="fas fa-search"></i> Conduct a comprehensive analysis of existing research on
+                    fundus disease detection.</li>
+                <li><i class="fas fa-database"></i> Acquire and preprocess a dataset relevant to the problem
+                    statement.</li>
+                <li><i class="fas fa-cogs"></i> Develop a robust deep learning model for detecting conditions
+                    such as diabetes, glaucoma, and cataract.</li>
+                <li><i class="fas fa-chart-line"></i> Evaluate and compare the results of the developed model
+                    with those of existing models.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

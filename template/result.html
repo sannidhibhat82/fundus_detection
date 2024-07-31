@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Prediction Result{% endblock %}
+
+{% block content %}
+<div class="result-container">
+    <h2>Model Prediction</h2>
+    <p><strong>{{ predicted_label }}</strong></p>
+    <img src="http://127.0.0.1:8000{{ image_path }}" width="250" alt="Prediction Result" class="result-image">
+
+    {% if predicted_label == 'Glaucoma' %}
+    <div class="disease-description">
+        <h4>About Glaucoma</h4>
+        <p>Glaucoma is a group of eye conditions that damage the optic nerve, crucial for good vision, often due to abnormally high pressure in the eye. Early detection and treatment are essential to prevent severe vision loss.</p>
+    </div>
+    <div class="alert disease-alert">
+        <strong>Warning!</strong> If you suspect you have glaucoma, please consult an eye specialist immediately.
+    </div>
+    {% elif predicted_label == 'Cataract' %}
+    <div class="disease-description">
+        <h4>About Cataract</h4>
+        <p>Cataracts are cloudy areas in the lens of the eye that can lead to vision impairment. They are common in older adults and can cause blurred vision, difficulty with night vision, and sensitivity to light. Surgery is often an effective treatment.</p>
+    </div>
+    <div class="alert disease-alert">
+        <strong>Warning!</strong> Consult an eye specialist for potential surgical options.
+    </div>
+    {% elif predicted_label == 'Diabetic Retinopathy' %}
+    <div class="disease-description">
+        <h4>About Diabetic Retinopathy</h4>
+        <p>Diabetic retinopathy is a diabetes complication that affects the eyes. It occurs when high blood sugar levels damage the blood vessels in the retina, leading to vision problems. Early detection through regular eye exams is vital for effective treatment.</p>
+    </div>
+    <div class="alert disease-alert">
+        <strong>Warning!</strong> Regular check-ups are crucial if you have diabetes. Please see a specialist.
+    </div>
+    {% elif predicted_label == 'Normal' %}
+    <div class="disease-description">
+        <h4>Normal Eye Condition</h4>
+        <p>Your eye condition appears to be normal, indicating no signs of disease. Regular eye check-ups are still recommended to maintain good eye health.</p>
+    </div>
+    <div class="alert normal-alert">
+        <strong>Good News!</strong> Keep up with regular eye exams to ensure your continued health.
+    </div>
+    {% endif %}
+    <div class="text-center mt-4">
+        <a href="{% url 'predict_disease' %}" class="btn btn-danger">Upload Another Image</a>
+    </div>
+</div>
+{% endblock %}
