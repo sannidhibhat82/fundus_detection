@@ -77,13 +77,14 @@ WSGI_APPLICATION = 'fundus_detection.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'HOST': 'localhost',
-        'PORT': '5432',
-        'NAME': 'disease',
-        'USER': 'postgres',
-        'PASSWORD': 'root',
+        'NAME': 'postgres',
+        'USER': 'postgres.fthmdcorxmeqhhiimqxf',
+        'PASSWORD': 'Sannidhi!@#',  # Replace with your Supabase password
+        'HOST': 'aws-0-ap-south-1.pooler.supabase.com',
+        'PORT': '6543',
     }
 }
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [os.path.join(BASE_DIR,"static")]
 STATIC_URL = '/static/'
