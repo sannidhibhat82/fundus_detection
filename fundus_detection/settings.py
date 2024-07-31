@@ -28,7 +28,6 @@ DEBUG = True
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'fundus-detection-ilu6.onrender.com']
 
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -85,6 +84,7 @@ DATABASES = {
         'PASSWORD': 'root',
     }
 }
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
