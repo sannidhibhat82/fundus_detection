@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-i1h9#am06!76t@we=oq2f2fvcyur4mzk%t8_wqefxxd2efnjzl
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.1.18']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'fundus-detection-ilu6.onrender.com']
 
 
 
