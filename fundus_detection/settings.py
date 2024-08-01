@@ -5,7 +5,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-i1h9#am06!76t@we=oq2f2fvcyur4mzk%t8_wqefxxd2efnjzl'
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'fundus-detection-ilu6.onrender.com']
 
