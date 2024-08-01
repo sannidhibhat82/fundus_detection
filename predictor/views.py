@@ -14,12 +14,7 @@ from django.shortcuts import render, redirect
 def get_vgg_modal():
     # Load the trained model
     try:
-        modal_instance = UploadedModel.objects.last()
-        if modal_instance: 
-            print(modal_instance) 
-            vgg_modal = models.load_model(modal_instance.model_file.path)
-        else:
-            vgg_modal = models.load_model(os.path.join(settings.BASE_DIR, 'static', 'models', 'mymodal.h5'))
+        vgg_modal = models.load_model(os.path.join(settings.BASE_DIR, 'static', 'modal', 'mymodal.h5'))
         return vgg_modal
     except Exception as e:
         return None
