@@ -1,17 +1,12 @@
-# views.py
 import os
-import numpy as np
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.conf import settings
 from .forms import ImageUploadForm
 from predictor.models import UploadedModel
-from django.shortcuts import render, redirect
-import requests
-import json
-import requests
 from gradio_client import Client, handle_file
 
-GRADIO_API_URL = "https://sannidhi82-fundus-detection.hf.space/predict"
+# Initialize Gradio Client
+GRADIO_CLIENT = Client("sannidhi82/fundus-detection")
 
 def upload_image(request):
     if request.method == 'POST':
@@ -28,13 +23,15 @@ def upload_image(request):
 
             try:
                 # Send image to the Gradio API for prediction
-                client = Client("sannidhi82/fundus-detection")
-                result = client.predict(
-                    uploaded_image=handle_file(img_path),
-                    api_name="/predict"
-                )
+                img_url = handle_file(img_path)
+                result = GRADIO_CLIENT.predict(img=img_url, api_name="/predict")
+
+                # Print debug information
+                print('API response:', result)
+
             except Exception as e:
                 print(f"Error during API call: {e}")
+                result = {'error': str(e)}
 
             # Create the URL for the uploaded image
             image_url = os.path.join(settings.MEDIA_URL, uploaded_image.name)
