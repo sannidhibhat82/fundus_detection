@@ -9,7 +9,7 @@
         <div class="col-md-6">
             <div class="upload-container" id="uploadContainer">
                 <i class="fas fa-upload upload-icon"></i>
-                <p class="upload-text">Drag and drop your image here or click to select</p>
+                <p class="upload-text">Click to select the Image for Prediction</p>
                 <form id="uploadForm" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     <input type="file" accept="image/*" id="imageUpload" name="image" required>
