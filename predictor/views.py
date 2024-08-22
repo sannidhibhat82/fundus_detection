@@ -25,9 +25,9 @@ def upload_image(request):
                 # Send image to the Gradio API for prediction
                 img_url = handle_file(img_path)
                 result = GRADIO_CLIENT.predict(img=img_url, api_name="/predict")
-
-                # Print debug information
-                print('API response:', result)
+                predicted_label = result[0]
+                confidences = result[1]
+                confidences = {class_name: confidence * 100 for class_name, confidence in confidences.items()}
 
             except Exception as e:
                 print(f"Error during API call: {e}")
@@ -37,7 +37,7 @@ def upload_image(request):
             image_url = os.path.join(settings.MEDIA_URL, uploaded_image.name)
 
             # Return the prediction result to the template
-            return render(request, 'result.html', {'predicted_label': result, 'image_path': image_url})
+            return render(request, 'result.html', {'predicted_label': predicted_label,'confidences': confidences, 'image_path': image_url, 'predicted_label':predicted_label,'confidences':confidences })
         else:
             print(form.errors)
     else:
