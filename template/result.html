@@ -41,8 +41,56 @@
         <strong>Good News!</strong> Keep up with regular eye exams to ensure your continued health.
     </div>
     {% endif %}
+    
+    <!-- Context about confidence scores -->
+    <div class="confidence-info mt-4">
+        <h5><strong>Confidence Scores</strong></h5>
+        <h6>Understanding Confidence Scores</h6>
+        <p>The confidence score represents how sure the model is about its prediction. A higher score indicates more certainty about the classification. Below, you can see the confidence levels for each potential diagnosis.</p>
+    </div>
+
+    <!-- Text link to show confidence details -->
+    <p><span class="text-primary" style="cursor: pointer;" id="toggle-confidence" onclick="toggleConfidence()">Click here to view confidence scores</span></p>
+
+    <!-- Confidence scores displayed in progress bars -->
+    <div id="confidence-scores" style="display: none;" class="mt-4">
+        <h3>Model Insights:</h3>
+        <div id="progress-bars" class="container">
+            {% for class_name, confidence in confidences.items %}
+                <div class="row align-items-center mb-2">
+                    <div class="col-md-3">
+                        <strong>{{ class_name }}</strong>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: {{ confidence|floatformat:2 }}%;" aria-valuenow="{{ confidence|floatformat:2 }}" aria-valuemin="0" aria-valuemax="100">
+                                <span class="sr-only">{{ confidence|floatformat:2 }}%</span> <!-- For screen readers -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-1 text-right">
+                        <span class="progress-percentage">{{ confidence|floatformat:2 }}%</span>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>        
+    </div>
     <div class="text-center mt-4">
         <a href="{% url 'predict_disease' %}" class="btn btn-danger">Upload Another Image</a>
-    </div>
+
 </div>
+
+<script>
+    function toggleConfidence() {
+        var confidenceSection = document.getElementById("confidence-scores");
+        var link = document.getElementById("toggle-confidence");
+        if (confidenceSection.style.display === "none") {
+            confidenceSection.style.display = "block";
+            link.textContent = "Hide confidence scores";
+        } else {
+            confidenceSection.style.display = "none";
+            link.textContent = "Click here to view confidence scores";
+        }
+    }
+</script>
 {% endblock %}
